@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Homepage</title>
   <style>
-    /* Make the video fill the screen */
     html, body {
       margin: 0;
       padding: 0;
@@ -13,6 +12,7 @@
       overflow: hidden;
     }
 
+    /* Fullscreen background video */
     #bg-video {
       position: fixed;
       top: 0;
@@ -21,8 +21,10 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
+      background: black; /* fallback color */
     }
 
+    /* Content overlay */
     .content {
       position: relative;
       color: white;
@@ -30,20 +32,48 @@
       top: 50%;
       transform: translateY(-50%);
       font-family: sans-serif;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Looping MP4 video -->
-  <video autoplay muted loop playsinline id="bg-video">
+  <!-- Background video -->
+  <video autoplay muted loop playsinline poster="poster.jpg" id="bg-video" preload="auto">
     <source src="video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- Content on top of the video -->
+  <!-- Content overlay -->
   <div class="content">
     <h1>Welcome to My Homepage</h1>
     <p>My website tagline goes here.</p>
   </div>
+
+  <script>
+    // Optional: Lazy-load video for faster mobile load
+    document.addEventListener("DOMContentLoaded", function() {
+      const video = document.getElementById('bg-video');
+      if(video.readyState === 0) {
+        video.load();
+      }
+    });
+  </script>
 </body>
 </html>
+
