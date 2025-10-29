@@ -50,6 +50,21 @@
       h1 { font-size: 2rem; }
       p { font-size: 1rem; }
     }
+
+    .content {
+  position: relative;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.title-svg {
+  width: 60%;
+  max-width: 600px;
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.7));
+}
+
   </style>
 </head>
 <body>
@@ -60,10 +75,10 @@
   </video>
 
   <!-- Content overlay -->
-  <div class="content">
-    <h1>tide</h1>
-    <p>loop</p>
-  </div>
+<div class="content">
+  <img src="tideloop3.svg" alt="Tide Loop" class="title-svg">
+</div>
+
 
   <script>
     // Optional: Lazy-load video for faster mobile load
