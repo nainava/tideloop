@@ -139,10 +139,60 @@
   transform: translateY(0);
 }
 
+#about-sticker {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 15;
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.5));
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#about-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff8f0;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  max-width: 300px;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #222;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.4s ease;
+}
+
+#about-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
     
   </style>
 </head>
+
+  <!--BODY -->
+
+  
 <body>
   <!-- Background video -->
   <video autoplay muted loop playsinline poster="poster.jpg" id="bg-video" preload="auto">
@@ -184,6 +234,36 @@
       const link = glass.getAttribute('data-link');
       if (link) window.location.href = link;
     });
+  });
+</script>
+
+<!-- About sticker -->
+<div id="about-sticker">✉️❤️</div>
+
+<!-- About popup -->
+<div id="about-popup">
+  <div id="about-close">✕</div>
+  <p>
+    I’m writing to you from a strange place I happened upon: TIDE LOOP (a CREATIVE STUDIO). It’s full of games, maps, yoga, and sea glass. Not sure what curiosity might surface here next, but I’ll stick around and let you know. Wish you were here, and hope to hear from you soon! -A
+  </p>
+  <p><strong>Ara Varma</strong> is a designer in San Francisco.</p>
+</div>
+
+  <!-- About sticker, JS -->
+
+  <script>
+  const sticker = document.getElementById('about-sticker');
+  const popup = document.getElementById('about-popup');
+  const closeBtn = document.getElementById('about-close');
+
+  sticker.addEventListener('click', () => {
+    popup.style.opacity = 1;
+    popup.style.pointerEvents = 'auto';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.opacity = 0;
+    popup.style.pointerEvents = 'none';
   });
 </script>
 
