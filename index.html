@@ -65,6 +65,43 @@
   filter: drop-shadow(0 0 10px rgba(0,0,0,0.7));
 }
 
+/* Sea glass pieces */
+.seaglass {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.seaglass:hover {
+  transform: scale(1.1);
+}
+
+/* Whimsical preview box */
+.preview-box {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(10px);
+}
+.seaglass:hover + .preview-box {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    
   </style>
 </head>
 <body>
@@ -89,6 +126,25 @@
       }
     });
   </script>
+
+
+<!-- Sea glass links -->
+<div class="seaglass" style="top: 30%; left: 25%;" data-link="page1.html"></div>
+<div class="preview-box" style="top: 30%; left: 35%;">A shimmering fragment — enter the tidepool</div>
+
+<div class="seaglass" style="top: 55%; left: 60%;" data-link="page2.html"></div>
+<div class="preview-box" style="top: 55%; left: 70%;">Something glints beneath the surface</div>
+
+  <script>
+  document.querySelectorAll('.seaglass').forEach(glass => {
+    glass.addEventListener('click', () => {
+      const link = glass.getAttribute('data-link');
+      if (link) window.location.href = link;
+    });
+  });
+</script>
+
+  
 </body>
 </html>
 
